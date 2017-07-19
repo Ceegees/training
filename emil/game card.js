@@ -1,80 +1,194 @@
-function All(){
-  this.deck=deck;
-  this.players=players;
+
+function Table() {
+    this.playingCards = [];
+    this.deck = [];
+    this.Players = [];
+
+    function Deck() {
+        this.newDeck = makeDeck();
+        this.shuffleDeck = this.deck; 
+        this.addCard = addCard();
+        this.removeCard = removeCard();
+
+        function Card(values, suites) {
+            this.values = values;
+            this.suites = suites;
+            this.name = suites + '' + values;
+
+            document.write(this.name + "\t");
+        }
+
+        function makeDeck() {
+            var suites = ['S', 'C', 'H', 'D'];
+            var values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+            deck = [];
+            for (var i = 0; i < suites.length; i++) {
+                for (var j = 0; j < values.length; j++) {
+
+                    var newcard = new Card(values[j], suites[i]);
+                    deck.push(newcard);
+
+                }
+            }
+            return deck;
+        }
+
+        function Shuffle() {
+
+            var index, temp, shuffleIndex;
+
+            for (index = this.deck.length - 1; index > 0; index--) {
+
+                shuffleIndex = Math.floor(Math.random() * (index + 1));
+                temp = this.deck[index];
+                this.deck[index] = this.deck[shuffleIndex];
+                this.deck[shuffleIndex] = temp;
+            }
+            console.log(deck);
+            return this;
+        }
+
+        function addCard(deck) {
+            this.playingCards.push(deck);
+        }
+
+        function removeCard() {
+            if (this.playingCards.length > 0)
+                return this.playingCards.shift();
+            else
+                return null;
+        }
+
+    }
+    Deck();
+
+    function Player(name, id) {
+        this.id = id;
+        this.name = name;
+        this.hand = [];
+        this.totalValues = 0;
+    }
+    addPlayer();
+
+    function addPlayer() {
+
+        var playerName = ['V', 'W', 'X', 'Y', 'Z'];
+
+        for (var i = 0; i < playerName.length; i++) {
+            var newPlayer = new Player(playerName[i], i);
+            Players.push(newPlayer);
+
+        }
+        //console.log(Players);
+    }
+    var noplayers = Players.length;
+    if (noplayers < 6) {
+
+        distributeCard(deck);
+
+    } else {
+        console.log("Enter max 6 Player");
+    }
+
+    function distributeCard() {
+
+        var cardMod = this.deck.length % Players.length;
+        var distCount = ((this.deck.length - cardMod) / Players.length);
+
+        for (var i = 0; i < distCount; i++) {
+            for (var j = 0; j < Players.length; j++) {
+                var takenCard = takeCard();
+                Players[j].hand.push(takenCard);
+            }
+        }
+    }
+
+    function takeCard() {
+        var randCard = Math.floor(Math.random() * deck.length);
+        var takenCard = deck[randCard];
+        deck.splice(randCard, 1);
+
+        return takenCard;
+    }
+
+
+    function getCardValue() {
+
+        var playersCount = Players.length;
+        var sortedPlayers = undefined;
+
+        for (var p = 0; p < playersCount; p++) {
+            for (var i = 0; i < Players[p].hand.length; i++) {
+
+                switch (Players[p].hand[i].values) {
+
+                    case "2":
+                        Players[p].hand[i].values = 2;
+
+                        break;
+                    case "3":
+                        Players[p].hand[i].values = 3;
+
+                        break;
+                    case "4":
+                        Players[p].hand[i].values = 4;
+
+                        break;
+                    case "5":
+                        Players[p].hand[i].values = 5;
+
+                        break;
+                    case "6":
+                        Players[p].hand[i].values = 6;
+
+                        break;
+                    case "7":
+                        Players[p].hand[i].values = 7;
+
+                        break;
+                    case "8":
+                        Players[p].hand[i].values = 8;
+
+                        break;
+                    case "9":
+                        Players[p].hand[i].values = 9;
+
+                        break;
+                    case "10":
+                        Players[p].hand[i].values = 10;
+
+                        break;
+                    case "J":
+                        Players[p].hand[i].values = 11;
+
+                        break;
+                    case "Q":
+                        Players[p].hand[i].values = 12;
+
+                        break;
+                    case "K":
+                        Players[p].hand[i].values = 13;
+
+                        break;
+                    case "A":
+                        Players[p].hand[i].values = 14;
+
+                        break;
+
+                }
+
+                Players[p].totalValues += Players[p].hand[i].values;
+
+            }
+            console.log(Players[p]);
+        }
+        Players.sort(function(a, b) {
+
+            return a.totalValues - b.totalValues;
+        });
+        console.log(Players);
+
+    }
+    getCardValue();
 }
-function Card(ranks,suits)
- {
- this.rank=ranks;
- this.suit=suits;
- this.name=this.rank+''+this.suit;
- document.write(this.name +' ');
- }
-function Deck()
- {
- this.deck=[];
- this.makeDeck=makeDeck();
- this.shuffle=shuffle(deck);
- //this.distribute=distribute(deck);
-function  makeDeck()
- {
- var ranks = new Array("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A");
- var suits = new Array("C", "D", "H", "S");
- // t  his.deck = new Array(52);
- var i,j;
- document.write("Cards Made\n");
- for(i=0;i<suits.length;i++){
-  for(j=0;j<ranks.length;j++){
-   this.deck[i*ranks.length+j] = new Card(ranks[j],suits[i]);
-
-     }
-    }
-	    //console.log(deck);
-
-
- }
-
-function shuffle(deck)
- {
-  var i,n=10,j,temp;
-  for(i=0;i<n;i++){
-  for(j=0;j<this.deck.length;j++){
-  k=Math.floor(Math.random()*this.deck.length);
-  temp=this.deck[j];
-  this.deck[j]=this.deck[k];
-  this.deck[k]=temp;
-  }
-  }
-  document.write("Cards Shuffled \n");
-    // console.log(deck);
-    for(var i = 0; i < this.deck.length; i++) {
-      document.write(deck[i].name+' ');
-    }
-  }
-}
-Deck();
-  function Player(players){
-    this.players=players;
-    this.hand=[];
-    }
-addplayer();
-  function addplayer()
-    {
-      var players=[];
-      var nplayer,i,j;
-      var playerlist=['v','w','x','y','z'];
-      nplayer=playerlist.length;
-      for(i=0;i<nplayer;i++){
-        var newplayer=new Player(playerlist[i]);
-        console.log(newplayer.players);
-        //console.log(newplayer.this.hand);
-      }
-      for(i=0;i<nplayer;i++)
-         {
-          for(j=i;j<this.deck.length;j+=nplayer)
-           {
-           players.hand[i].push(this.deck[j].name);
-           }
-
-         }
-    }
-All();
+Table();
