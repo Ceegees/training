@@ -8,37 +8,40 @@ function Player(name, id) {
 }
 
 
-function addCard(card) {
-    hand.push(card);
-}
-
-function removeCard(card) {
-    if (hand.length > 0)
-        return hand.pop();
-    else
-        return null;
-}
-
-// var T = new Table();
-// var Players = T.playersList();
-// console.log("players from Table ---->"+ Players);
+// function addCard(card) {
+//     hand.push(card);
+// }
+//
+// function removeCard(card) {
+//     if (hand.length > 0)
+//         return hand.pop();
+//     else
+//         return null;
+// }
 
 function distributeCard(shuffledCards) {
 
     var cards = shuffledCards;
     console.log("Cards Distributed");
-    // console.log("Remaining Cards---> ", cards);
+    console.log("Remaining Cards---> ", cards);
 
     var cardMod = cards.length % this.Players.length;
     var distCount = ((cards.length - cardMod) / this.Players.length);
 
     for (var i = 0; i < distCount; i++) {
-        for (var j = 0; j < Players.length; j++) {
-            var takenCard = takeCard();
-            Players[j].hand.push(takenCard);
-        }
-    }
+        (function(i) {
+            setTimeout(function() {
 
+                for (var j = 0; j < Players.length; j++) {
+                    var takenCard = takeCard();
+                    Players[j].hand.push(takenCard);
+                }
+                document.getElementById("displayPlayers").innerHTML = "";
+                handValue();
+
+            }, 3000 * i);
+        }(i));
+    }
 
     function takeCard() {
         var randCard = Math.floor(Math.random() * cards.length);
@@ -47,7 +50,7 @@ function distributeCard(shuffledCards) {
 
         return takenCard;
     }
-    handValue();
+
 }
 
 function handValue() {
@@ -106,7 +109,25 @@ function handValue() {
         console.log(Players[p]);
     }
 
-    sortedPlayers();
+    displayOnce();
+  }
+
+function displayOnce() {
+
+  var compiled = _.template($("#player-template").html(), Players);
+  $('#displayPlayers').append(compiled);
+
+  sortedPlayers();
+
+
+  _.each(Players, function(player) {
+      player.handValues = 0;
+      // console.log(player.name + " => " + player.handValues);
+      _.each(player.hand, function(handCard) {
+          handCard = 0;
+          // console.log(handCard.name);
+      });
+  });
 }
 
 function sortedPlayers() {
@@ -121,29 +142,5 @@ function sortedPlayers() {
         console.log(player);
     });
     Players.reverse();
-
-    var compiled = _.template($("#player-template").html(), Players);
-    $('#displayPlayers').append(compiled);
-
-
-
-    _.each(Players, function(player) {
-        player.handValues = 0;
-        // console.log(player.name + " => " + player.handValues);
-        _.each(player.hand, function(handCard) {
-            handCard = 0;
-            // console.log(handCard.name);
-        });
-    });
-    // setInterval(Function("Table();"), 12000);
-    setTimeout(function() {
-        countDown();
-    }, 12000);
-
-    function countDown() {
-        document.getElementById("displayPlayers").innerHTML = "";
-        Table();
-
-    }
 
 }
