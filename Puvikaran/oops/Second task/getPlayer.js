@@ -2,12 +2,11 @@ var select = document.getElementById("select");
 var texts = document.getElementById("texts");
 var playerName = [];
 
-// function selectNoplayer() {
+
 select.onchange = function() {
-    $(document).ready(function() {
-      select.disabled=true;
+
+        select.disabled=true;
         var val=select.options[select.selectedIndex].value;
-        // var val = option;
         texts.innerHTML = "";
         for (var i = 1; i <= val; i++) {
             texts.innerHTML += '<div class="form-group"><label class="col-sm-4 control-label">Player ' + i + ':</label><div class="col-sm-6"><input type="text" class="form-control" name="playerName" id="t_' + i +
@@ -35,9 +34,9 @@ select.onchange = function() {
 
         });
 
-    });
+    
 
-// }
+
 }
 
 

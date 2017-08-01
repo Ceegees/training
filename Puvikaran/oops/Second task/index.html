@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Card Game</title>
+    <title>Card Game (SPA)</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <div id="screen-1">
                     <div class="jumbotron">
-                        <h4 class="text-center text-info">Javascript Card Game</h4>
+                        <h4 class="text-center text-info">Javascript Card Game (SPA)</h4>
                         <br/>
                         <form class="form-horizontal">
                             <div class="form-group">
@@ -57,12 +57,12 @@
                                         <div class="col-sm-3 col-md-4 text-center">
                                             <ul class="list-group">
                                                 <li class="list-group-item">
-                                                    <h4><%= player.Player %></h4>
+                                                    <h4><%= player.name %></h4>
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <b><%= player.Handsvalues %></b>
+                                                    <b><%= player.handValues %></b>
                                                 </li>
-                                                <% _.each(player.Handcards, function(handCard) { %>
+                                                <% _.each(player.hand, function(handCard) { %>
                                                     <li class="list-group-item">
                                                         <%= handCard.name %>
                                                     </li>
