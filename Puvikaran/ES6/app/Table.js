@@ -2,13 +2,11 @@ import playerName from './index.js';
 import Player from './Player.js';
 import Deck from './Deck.js';
 
-const deck = new Deck();
-const player = new Player();
-
-
 class Table {
     constructor() {
         this.players = [];
+        this.deck = new Deck();
+        this.player = new Player();
     }
 
     joinPlayer() {
@@ -38,7 +36,7 @@ class Table {
         if (playersCount <= maxPlayers) {
 
             console.log("Game Started");
-            deck.shuffle();
+            this.deck.shuffle();
             console.log("Cards Shuffled");
 
             let that = this;
@@ -61,10 +59,10 @@ class Table {
 
     distributeCard() {
 
-        let cardsCount = deck.cards.length;
+        let cardsCount = this.deck.cards.length;
         let playersCount = this.players.length;
 
-        let card = deck.removeCard();
+        let card = this.deck.removeCard();
         this.players[cardsCount % playersCount].addCard(card);
 
         console.log("Cards Distributing...");
