@@ -1,24 +1,25 @@
 function player(name, id) {
   this.name = name;
   this.id = id;
-  this.totalValues = 0;
   this.hand = [];
-  //var c = new Card();
-  // var t=new Table();
-  // var l=t.
-  // this.total = function() {
-    // console.log(l);
-    // for (var i = 0; i < this.players.length; i++) {
-      // this.totalValues = 0;
-      // for (var j = 0; j < this.players[i].hand.length; j++) {
-        // var value = c.getCardValue();
-      // var test=this.players[i].hand[j].getCardValue();
-        //this.totalValues += value;
-        // console.log(test);
-      // }
-
-      // console.log(this.totalValues);
-    // }
-  // };
+  this.addCard = function(card) {
+    this.hand.push(card);
+  };
+  this.removeCard = function() {
+    if (this.hand.length > 0)
+      return this.hand.pop();
+    else {
+      return 0;
+    }
+  };
+  var c = new Card();
+  this.handValue = function() {
+    var totalValues = 0;
+    var cardValue = 0;
+    for (var j = 0; j < this.hand.length; j++) {
+      cardValue = this.hand[j].getCardValue();
+      totalValues += parseInt(cardValue);
+    }
+    return totalValues;
+  };
 }
-//hai godly

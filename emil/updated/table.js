@@ -20,18 +20,23 @@ function Table() {
   };
   var d = new Deck();
   this.distributeCard = function() {
-    d.makeDeck();
-    var shuffled = d.shuffleDeck();
+
     if (this.playersName.length < 3 || this.playersName.length > 6)
       console.log("Insufficient Number of Players");
     else {
       console.log("Game Started");
+      d.makeDeck();
+      var shuffled = d.shuffleDeck();
       for (var i = 0; i < this.playersName.length; i++) {
         for (var j = i; j < shuffled.length; j += this.playersName.length) {
-          this.players[i].hand.push(shuffled[j].name);
+          // var card=d.removeCard();
+          this.players[i].hand.push(shuffled[j]);
         }
       }
-      console.log(this.players);
+    }
+    for (var i = 0; i < this.players.length; i++) {
+      var total = this.players[i].handValue();
+      console.log(this.players[i].name + '\t' + total);
     }
   };
 }
