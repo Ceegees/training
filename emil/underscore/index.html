@@ -51,5 +51,34 @@
                     <ul class="list-group">
                       <li class="list-group">
                         <list class="list-group-item">
-                          <h5><%.player.name%></h5>
+                          <h5><%=player.name%></h5>
+                      </li>
+                      <li class="list-group-item">
+                        <%=player.handValues%>
+                      </li>
+                      <%_.each(player.hand,function(handCard)){%>
+                        <li class="list-group-item">
+                          <%=handCard.name%>
+                        </li>
+                        <%});%>
+                    </ul>
+                  </div>
+                  <%});%>
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script src="table.js" charset="utf-8"></script>
+  <script src="player.js" charset="utf-8"></script>
+  <script src="card.js" charset="utf-8"></script>
+  <script src="deck.js" charset="utf-8"></script>
+  <script src="getplayer.js" charset="utf-8"></script>
+  <!-- <script src="playersData.js"charset ="utf-8"></script>  -->
+</body>
+
 </html>
