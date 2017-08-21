@@ -34,7 +34,11 @@ function Table() {
     this.players[cardscount % nplayers].addCard(card);
     for (var i = 0; i < nplayers; i++) {
       this.players[i].handValues = this.players[i].handValue();
-      console.log("Player:" + this.players[i].name + "\tHandValue"   + this.players[i].handValues);
+      console.log("Player:" + this.players[i].name + "\tHandValue:\t" + this.players[i].handValues);
     }
+    console.log("Sort the players in Ascending order ");
+    var sortPlayers = _.sortBy(this.players, 'handValues');
+    sortPlayers.reverse();
+    return display(sortPlayers);
   };
 }

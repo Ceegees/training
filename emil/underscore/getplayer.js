@@ -21,6 +21,7 @@ select.onchange = function() {
     screenChanger();
     t = new Table();
     t.joinPlayers();
+    t.startgame();
   });
 }
 $(document).ready(function() {
