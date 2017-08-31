@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Card Game (SPA)</title>
-
+    <title>Card Game (ES6)</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
@@ -12,13 +11,12 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div id="screen-1">
                     <div class="jumbotron">
-                        <h4 class="text-center text-info">Javascript Card Game (SPA)</h4>
+                        <h4 class="text-center text-info">Javascript Card Game (es6)</h4>
                         <br/>
                         <form class="form-horizontal">
                             <div class="form-group">
@@ -53,23 +51,23 @@
                             <div class="col-sm-6 col-md-12" id="displayPlayers"> </div>
 
                             <script type='text/template' id="player-template">
-                                    <% _.each(Players, function(player) { %>
-                                        <div class="col-sm-3 col-md-4 text-center">
-                                            <ul class="list-group">
+                                <% _.each(Players, function(player) { %>
+                                    <div class="col-sm-3 col-md-4 text-center">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <h4><%= player.name %></h4>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b><%= player.handValues %></b>
+                                            </li>
+                                            <% _.each(player.hand, function(handCard) { %>
                                                 <li class="list-group-item">
-                                                    <h4><%= player.name %></h4>
+                                                    <%= handCard.name %>
                                                 </li>
-                                                <li class="list-group-item">
-                                                    <b><%= player.handValues %></b>
-                                                </li>
-                                                <% _.each(player.hand, function(handCard) { %>
-                                                    <li class="list-group-item">
-                                                        <%= handCard.name %>
-                                                    </li>
-                                                    <% }); %>
-                                            </ul>
-                                        </div>
-                                        <% }); %>
+                                                <% }); %>
+                                        </ul>
+                                    </div>
+                                    <% }); %>
                             </script>
 
                         </div>
@@ -80,14 +78,8 @@
     </div>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script src="Table.js" charset="utf-8"></script>
-    <script src="Player.js" charset="utf-8"></script>
-    <script src="Card.js" charset="utf-8"></script>
-    <script src="Deck.js" charset="utf-8"></script>
-    <script src="getPlayer.js" charset="utf-8"></script>
-    <script src="playersData.js" charset="utf-8"></script>
-
+    <script src="app/playersData.js" charset="utf-8"></script>
+    <script src="bundle.js" type="text/javascript"></script>
 </body>
 
 </html>

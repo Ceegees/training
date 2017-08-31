@@ -1,0 +1,21 @@
+MVC structure
+---------------
+config
+
+controllers
+
+lib
+
+models
+
+node_modules
+
+public 
+
+views
+
+readme.md
+
+app.js
+
+package.json

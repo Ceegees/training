@@ -10,8 +10,8 @@ function Deck() {
                 this.cards.push(new Card(value[j], suite[i]));
             }
         }
-
         return this.cards;
+
     };
 
     this.shuffle = function() {
@@ -26,7 +26,8 @@ function Deck() {
             this.cards[shuffleIndex] = temp;
 
         }
-       return this.cards;
+        return this.cards;
+
     };
 
     this.addCard = function(card) {

@@ -56,24 +56,16 @@ function Table() {
 
         var cardsCount = deck.cards.length;
         var playersCount = this.players.length;
-        var sortedPlayers = [];
 
         var card = deck.removeCard();
         this.players[cardsCount % playersCount].addCard(card);
 
 
-        console.log("Cards Distributed");
+        console.log("Cards Distributing...");
         console.log("Handsvalue of Players");
         for (var i = 0; i < playersCount; i++) {
-            var total = this.players[i].handValue();
-            console.log('Player: ' + this.players[i].name + ' Handsvalues: ' + total);
-
-            var s = {
-                'Player': this.players[i].name,
-                'Handsvalues': total,
-                'Handcards': this.players[i].hand
-            };
-            sortedPlayers.push(s);
+              this.players[i].handValues = this.players[i].handValue();
+            console.log("Player "+ this.players[i].name +" handvalues "+ this.players[i].handValues);
 
             // if (total == 0) {
             //     var name = this.players[i].name;
@@ -83,10 +75,9 @@ function Table() {
         }
 
         console.log("Players sorted in the ascending order of total card values");
-        sortedPlayers.sort(function(a, b) {
-            return a.Handsvalues - b.Handsvalues;
-        });
+        var sortedPlayers = _.sortBy(this.players, 'handValues');
         sortedPlayers.reverse();
+
 
         return displayPlayers(sortedPlayers);
     };
