@@ -3,6 +3,7 @@ function Player(id, name) {
     this.id = id;
     this.name = name;
     this.hand = [];
+    this.handValues = 0;
 
 
     this.addCard = function(card) {
